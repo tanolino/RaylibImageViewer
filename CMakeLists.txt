@@ -107,7 +107,7 @@ add_subdirectory("raylib")
 #---------------------------------------------
 
 
-include_directories("${CMAKE_SOURCE_DIR}/code" ${raylib_public_headers})
+include_directories("${CMAKE_SOURCE_DIR}/Code" ${raylib_public_headers})
 message(DEBUG "Source Files: " ${SRC_FILES})
 add_executable(${PROJECT_NAME} ${SRC_FILES})
 target_link_libraries(${PROJECT_NAME} PRIVATE raylib)

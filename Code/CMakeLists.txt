@@ -1,4 +1,4 @@
-set(CURRENT_DIR "code")
+set(CURRENT_DIR "Code")
 set(CURRENT_FILES
 "main.cpp"
 )
