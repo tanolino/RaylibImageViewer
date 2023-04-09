@@ -1,14 +1,15 @@
 #include <iostream>
 #include <memory>
-#include <raylib.h>
 
 #if defined(PLATFORM_WEB)
 #include <emscripten/emscripten.h>
 #endif
 
 #define RAYGUI_IMPLEMENTATION
+extern "C" {
+#include <raylib.h>
 #include "../raygui/raygui.h"
-
+}
 using namespace std;
 
 void MainLoop();
@@ -39,11 +40,12 @@ int main() {
 
 void MainLoop() {
     float frameTime = GetFrameTime();
-	
+    
     BeginTextureMode(target);
 	// Draw what you want to the target
-	
+	ClearBackground(WHITE);
     EndTextureMode();
+
     BeginDrawing();
     ClearBackground(BLACK);
 #if defined(PLATFORM_WEB)
@@ -70,6 +72,6 @@ void MainLoop() {
                   (float)RenderHeight * scale},
         Vector2{0, 0}, 0, WHITE);
 
-    GuiWindowBox(Rectangle{ 0, 0, RenderWidth, RenderHeight }, "#198# PORTABLE WINDOW");
+    GuiWindowBox(Rectangle{ 0, 0, GetScreenWidth() / 4, GetScreenHeight() }, "#198# PORTABLE WINDOW");
     EndDrawing();
 }
