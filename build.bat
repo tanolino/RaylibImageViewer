@@ -24,8 +24,8 @@ goto :eof
 ::-----------build for PC-----::
 :buildPC
 echo Build for pc
-if not exist buildPC mkdir buildPC
-pushd buildPC
+if not exist build_PC_Win mkdir build_PC_Win
+pushd build_PC_Win
 cmake -G Ninja ..
 ..\Tools\win\ninja.exe
 popd
@@ -35,8 +35,8 @@ exit /B
 ::-----------build for Web-----::
 :buildWeb
 echo Build for Web
-if not exist buildWeb mkdir buildWeb
-pushd buildWeb 
+if not exist build_Web mkdir build_Web
+pushd build_Web 
 # TODO Make it with Ninja
 emcmake cmake -DPLATFORM=Web -DCMAKE_BUILD_TYPE=Release -DCMAKE_EXE_LINKER_FLAGS="-s USE_GLFW=3" -DCMAKE_EXECUTABLE_SUFFIX=".html" -DCMAKE_VERBOSE_MAKEFILE:BOOL=ON ..
 emmake make PLATFORM=PLATFORM_WEB -B -j12

@@ -1,6 +1,11 @@
-set(CURRENT_DIR "Code")
+set(CURRENT_DIR "code")
 set(CURRENT_FILES
-"main.cpp"
+    "raylib_wrapper.h"
+    "main.c"
+    "TextureToScreen.h"
+    "TextureToScreen.c"
+    "UserInterface.h"
+    "UserInterface.c"
 )
 list(TRANSFORM CURRENT_FILES PREPEND "${CURRENT_DIR}/")
 source_group("${CURRENT_DIR}" FILES "${CURRENT_FILES}")

@@ -1,8 +1,9 @@
 cmake_minimum_required(VERSION 3.10)
 
-set(PROJECT_NAME "SampleProject")
+set(PROJECT_NAME "RaylibImageViewer")
 set(CMAKE_C_STANDARD 11)
 set(CMAKE_C_STANDARD_REQUIRED True)
+# set(LLVM_CXX_STD 17)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
@@ -16,7 +17,7 @@ project(
 	)
 
 set(SRC_FILES "") # Filled by add_subdirectory
-add_subdirectory("Code")
+add_subdirectory("code")
 IF (WIN32)
 	source_group(TREE "${CMAKE_CURRENT_SOURCE_DIR}"
 			 FILES ${SRC_FILES})
@@ -68,15 +69,15 @@ set(SUPPORT_QUADS_DRAW_MODE ON)
 set(SUPPORT_DEFAULT_FONT ON)
 set(SUPPORT_MODULE_RMODELS OFF)
 set(SUPPORT_FILEFORMAT_ASTC OFF)
-set(SUPPORT_FILEFORMAT_BMP OFF)
+set(SUPPORT_FILEFORMAT_BMP ON)
 set(SUPPORT_FILEFORMAT_DDS OFF)
 set(SUPPORT_FILEFORMAT_FLAC OFF)
 set(SUPPORT_FILEFORMAT_FNT OFF)
-set(SUPPORT_FILEFORMAT_GIF OFF)
+set(SUPPORT_FILEFORMAT_GIF ON)
 set(SUPPORT_FILEFORMAT_GLTF OFF)
 set(SUPPORT_FILEFORMAT_HDR OFF)
 set(SUPPORT_FILEFORMAT_IQM OFF)
-set(SUPPORT_FILEFORMAT_JPG OFF)
+set(SUPPORT_FILEFORMAT_JPG ON)
 set(SUPPORT_FILEFORMAT_KTX OFF)
 set(SUPPORT_FILEFORMAT_MOD OFF)
 set(SUPPORT_FILEFORMAT_MP3 OFF)
@@ -107,7 +108,7 @@ add_subdirectory("raylib")
 #---------------------------------------------
 
 
-include_directories("${CMAKE_SOURCE_DIR}/Code" ${raylib_public_headers})
+include_directories("${CMAKE_SOURCE_DIR}/code" ${raylib_public_headers})
 message(DEBUG "Source Files: " ${SRC_FILES})
 add_executable(${PROJECT_NAME} ${SRC_FILES})
 target_link_libraries(${PROJECT_NAME} PRIVATE raylib)

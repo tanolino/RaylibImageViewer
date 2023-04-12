@@ -1,9 +1,11 @@
 #!/bin/bash
 
+set -o errexit
+
 buildPC () {
 	echo "Build for pc"
-	mkdir -p buildPC
-	pushd buildPC
+	mkdir -p build_PC_XNix
+	pushd build_PC_XNix
 	cmake -G Ninja ..
 	../Tools/linux/ninja
 	popd
@@ -11,8 +13,8 @@ buildPC () {
 
 buildWeb () {
 	echo "Build for Web"
-	mkdir -p buildWeb
-	pushd buildWeb 
+	mkdir -p build_Web
+	pushd build_Web 
 	# TODO Make it with Ninja
 	emcmake cmake -DPLATFORM=Web -DCMAKE_BUILD_TYPE=Release -DCMAKE_EXE_LINKER_FLAGS="-s USE_GLFW=3" -DCMAKE_EXECUTABLE_SUFFIX=".html" -DCMAKE_VERBOSE_MAKEFILE:BOOL=ON ..
 	emmake make PLATFORM=PLATFORM_WEB -B
