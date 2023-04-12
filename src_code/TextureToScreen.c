@@ -71,7 +71,7 @@ void TextureToScreen_ScrollContent(const Texture2D* source,
     // TODO
 }
 
-static ZoomMode_t CurrentZoomMode = ZM_ZoomFill;
+static ZoomMode_t CurrentZoomMode = ZM_FitAll;
 void TextureToScreen_NextZoomMode(void)
 {
     if (CurrentZoomMode == ZM_ZoomFill)

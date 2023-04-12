@@ -1,9 +1,13 @@
-set(CURRENT_DIR "code")
+set(CURRENT_DIR "src_code")
 set(CURRENT_FILES
-    "raylib_wrapper.h"
     "main.c"
+    "raylib_wrapper.h"
+	"StringUtils.h"
+	"StringUtils.c"
     "TextureToScreen.h"
     "TextureToScreen.c"
+	"Tree.h"
+	"Tree.c"
     "UserInterface.h"
     "UserInterface.c"
 )

@@ -17,7 +17,7 @@ project(
 	)
 
 set(SRC_FILES "") # Filled by add_subdirectory
-add_subdirectory("code")
+add_subdirectory("src_code")
 IF (WIN32)
 	source_group(TREE "${CMAKE_CURRENT_SOURCE_DIR}"
 			 FILES ${SRC_FILES})

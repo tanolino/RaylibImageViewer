@@ -1,5 +1,7 @@
 #include "UserInterface.h"
 
+#include "Tree.h"
+
 #define RAYGUI_IMPLEMENTATION
 #include <raylib.h>
 #include "raylib_wrapper.h"
@@ -12,7 +14,12 @@ bool UserInterface_ShowHelp(void)
     return result;
 }
 
-bool UserInterface_ShowFolderTree(void)
+void UserInterface_ShowFolderTree(void)
 {
+    struct Leaf* leaf = Tree_GetCurrent();
+    if (!leaf)
+        return; // Ohno
 
+    const Rectangle rect = { 0, 0, 100, 20 };
+    GuiLabel(rect, leaf->file_name);
 }
