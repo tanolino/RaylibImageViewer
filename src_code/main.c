@@ -1,13 +1,9 @@
-#include "raylib.h"
+#include <raylib.h>
 #if defined(PLATFORM_WEB)
 #include <emscripten/emscripten.h>
 #endif
 
-#include <stdio.h>
-
-// #define RAYGUI_IMPLEMENTATION
-// #include <raylib.h>
-// #include "raylib_wrapper.h"
+#include <stdio.h> // printf
 
 #include "TextureToScreen.h"
 #include "UserInterface.h"

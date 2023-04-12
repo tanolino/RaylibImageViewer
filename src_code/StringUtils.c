@@ -1,5 +1,5 @@
 #include "StringUtils.h"
-#include <stdlib.h>
+#include <stdlib.h> // malloc
 
 // Duplicate a string and write it into the given pointer
 bool StringDuplicate(char** destination, const char* source, size_t max)
