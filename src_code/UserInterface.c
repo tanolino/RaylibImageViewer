@@ -16,6 +16,8 @@ bool UserInterface_ShowHelp(void)
 
 void UserInterface_ShowFolderTree(void)
 {
+    return;
+
     struct Leaf* leaf = Tree_GetCurrent();
     if (!leaf)
         return; // Ohno

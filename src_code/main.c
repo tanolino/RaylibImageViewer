@@ -22,13 +22,16 @@ int main(int argc, char** argv) {
         printf("\nusage: %s <image_file>\n", argv[0]);
         return 1;
     }
-    
+
+    printf("\nStarting with image %s\n", argv[1]);
     // Init
     SetConfigFlags(FLAG_WINDOW_RESIZABLE | FLAG_VSYNC_HINT);
     InitWindow(1200, 800, "raylib Hello!");
     
     Tree_RegisterStart(argv[1]);
     target = LoadTexture(argv[1]);
+    if (target.mipmaps > 1)
+        GenTextureMipmaps(&target);
 #if defined(PLATFORM_WEB)
     emscripten_set_main_loop(MainLoop, 60, 1);
 #else
