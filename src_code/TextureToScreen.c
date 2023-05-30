@@ -1,6 +1,8 @@
 #include "TextureToScreen.h"
 #include "raylib.h"
 
+#include <stdio.h>
+
 void TextureToScreen_FitAll(const Texture2D* source)
 {
     const float sourceWidth = (float)source->width;
@@ -89,6 +91,11 @@ void TextureToScreen(const Texture2D* source)
             break;
         case ZM_ZoomFill:
             TextureToScreen_ZoomFill(source);
+            break;
+        default:
+            fprintf(stderr, "Invalid ZoomMode_t, encountered: %d", 
+                CurrentZoomMode);
+            CurrentZoomMode = ZM_FitAll;
             break;
     }
 }

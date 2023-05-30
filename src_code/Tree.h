@@ -1,12 +1,10 @@
 #ifndef TREE_HEADER
 #define TREE_HEADER
 
-struct Leaf {
-    char* file_name;
-};
-
-void               Tree_RegisterStart(const char* start);
-void               Tree_CleanUp();
-const struct Leaf* Tree_GetCurrent();
+void        Tree_RegisterStart(const char* start);
+void        Tree_CleanUp();
+const char* Tree_GetCurrent();
+void        Tree_Go_Next();
+void        Tree_Go_Previous();
 
 #endif // TREE_HEADER

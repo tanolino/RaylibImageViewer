@@ -16,12 +16,6 @@ bool UserInterface_ShowHelp(void)
 
 void UserInterface_ShowFolderTree(void)
 {
-    return;
-
-    struct Leaf* leaf = Tree_GetCurrent();
-    if (!leaf)
-        return; // Ohno
-
     const Rectangle rect = { 0, 0, 100, 20 };
-    GuiLabel(rect, leaf->file_name);
+    GuiLabel(rect, Tree_GetCurrent());
 }

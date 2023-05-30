@@ -32,3 +32,15 @@ bool StringDuplicate(char** destination, const char* source, size_t limit_length
     return true;
 }
 
+void StringFree(char** str_ptr)
+{
+    if (str_ptr == 0)
+        return;
+
+    char* str = *str_ptr;
+    if (str == 0)
+        return;
+    
+    free(str);
+    *str_ptr = 0;
+}
