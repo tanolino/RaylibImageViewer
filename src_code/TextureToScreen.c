@@ -7,8 +7,8 @@ void TextureToScreen_FitAll(const Texture2D* source)
 {
     const float sourceWidth = (float)source->width;
     const float sourceHeight = (float)source->height;
-    const float screenWidth = (float)GetScreenWidth();
-    const float screenHeight = (float)GetScreenHeight();
+    const float screenWidth = (float)GetRenderWidth();
+    const float screenHeight = (float)GetRenderHeight();
     const float scaleX = screenWidth / sourceWidth;
     const float scaleY = screenHeight / sourceHeight;
 
@@ -36,8 +36,8 @@ void TextureToScreen_ZoomFill(const Texture2D* source)
 {
     const float sourceWidth = (float)source->width;
     const float sourceHeight = (float)source->height;
-    const float screenWidth = (float)GetScreenWidth();
-    const float screenHeight = (float)GetScreenHeight();
+    const float screenWidth = (float)GetRenderWidth();
+    const float screenHeight = (float)GetRenderHeight();
     const float scaleX = screenWidth / sourceWidth;
     const float scaleY = screenHeight / sourceHeight;
 

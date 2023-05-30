@@ -16,6 +16,9 @@ bool UserInterface_ShowHelp(void)
 
 void UserInterface_ShowFolderTree(void)
 {
-    const Rectangle rect = { 0, 0, 100, 20 };
+    // computational expensive to do every frame
+    Rectangle rect = { 0, 0, GetTextWidth(Tree_GetCurrent()) , 30};
+    if (rect.width > GetScreenWidth())
+        rect.x = GetScreenWidth() - rect.width;
     GuiLabel(rect, Tree_GetCurrent());
 }

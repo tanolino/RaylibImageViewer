@@ -17,8 +17,8 @@ bool IsAskingForHelp(const char* param);
 static Texture2D target = { 0 };
 static bool showHelp = false;
 static bool showTree = true;
-
-int main(int argc, char** argv) {
+int main(int argc, char** argv)
+{
     if (argc < 2)
     {
         Tree_RegisterStart(GetWorkingDirectory());
@@ -35,7 +35,7 @@ int main(int argc, char** argv) {
 
     printf("\nStarting with parameter %s\n", argv[1]);
     // Init
-    SetConfigFlags(FLAG_WINDOW_RESIZABLE | FLAG_VSYNC_HINT);
+    SetConfigFlags(FLAG_WINDOW_RESIZABLE | FLAG_WINDOW_HIGHDPI | FLAG_VSYNC_HINT);
     InitWindow(1200, 800, "raylib Hello!");
     
     target = LoadTexture(Tree_GetCurrent());

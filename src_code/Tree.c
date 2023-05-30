@@ -24,7 +24,7 @@ void Tree_RegisterStart(const char* start)
         for (unsigned int i = 0; i < filesRoot.count; ++i)
         {
             CleanUpPath(filesRoot.paths[i]);
-            printf("\t%s\n", filesRoot.paths[i]);
+            // printf("\t%s\n", filesRoot.paths[i]);
             // printf("strcmp\n\t%s\n\t%s\n\t= %d\n", tmp, filesRoot.paths[i], strcmp(tmp, filesRoot.paths[i]));
         }
 
