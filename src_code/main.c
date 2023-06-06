@@ -17,6 +17,16 @@ bool IsAskingForHelp(const char* param);
 static Texture2D target = { 0 };
 static bool showHelp = false;
 static bool showTree = true;
+
+typedef struct Vector2int {
+    int width;
+    int height;
+} Vector2int;
+
+const Vector2int minimal_window = { 1280, 800 };
+Vector2int fullscreen_return_pos = { 0 };
+Vector2int fullscreen_return_size = { 1280, 800 };
+
 int main(int argc, char** argv)
 {
     if (argc < 2)
@@ -36,7 +46,7 @@ int main(int argc, char** argv)
     printf("\nStarting with parameter %s\n", argv[1]);
     // Init
     SetConfigFlags(FLAG_WINDOW_RESIZABLE | FLAG_WINDOW_HIGHDPI | FLAG_VSYNC_HINT);
-    InitWindow(1200, 800, "raylib Hello!");
+    InitWindow(minimal_window.width, minimal_window.height, "raylib Hello!");
     
     target = LoadTexture(Tree_GetCurrent());
     if (target.mipmaps > 1)
@@ -94,7 +104,26 @@ void HandleInput() {
 #ifndef PLATFORM_WEB
         case KEY_F:
         case KEY_F11:
-            ToggleFullscreen();
+            if (IsWindowState(FLAG_WINDOW_UNDECORATED))
+            {
+                SetWindowSize(fullscreen_return_size.width, fullscreen_return_size.height);
+                SetWindowPosition(fullscreen_return_pos.width, fullscreen_return_pos.height);
+                ClearWindowState(FLAG_WINDOW_UNDECORATED);
+            }
+            else
+            {
+                const Vector2 windowPos = GetWindowPosition();
+                fullscreen_return_pos.width = (int)windowPos.x;
+                fullscreen_return_pos.height= (int)windowPos.y;
+                fullscreen_return_size.width = GetRenderWidth();
+                fullscreen_return_size.height = GetRenderHeight();
+                const int monitor = GetCurrentMonitor();
+                const int newWidth = GetMonitorWidth(monitor);
+                const int newHeight = GetMonitorHeight(monitor);
+                SetWindowState(FLAG_WINDOW_UNDECORATED);
+                SetWindowSize(newWidth, newHeight);
+                // ToggleFullscreen();
+            }
             break;
 #endif
             // Interacting with the UI
