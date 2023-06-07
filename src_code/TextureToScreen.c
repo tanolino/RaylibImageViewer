@@ -84,19 +84,19 @@ void TextureToScreen_NextZoomMode(void)
 
 void TextureToScreen(const Texture2D* source)
 {
-    switch(CurrentZoomMode)
+    switch (CurrentZoomMode)
     {
-        case ZM_FitAll:
-            TextureToScreen_FitAll(source);
-            break;
-        case ZM_ZoomFill:
-            TextureToScreen_ZoomFill(source);
-            break;
-        default:
-            fprintf(stderr, "Invalid ZoomMode_t, encountered: %d", 
-                CurrentZoomMode);
-            CurrentZoomMode = ZM_FitAll;
-            break;
+    case ZM_FitAll:
+        TextureToScreen_FitAll(source);
+        break;
+    case ZM_ZoomFill:
+        TextureToScreen_ZoomFill(source);
+        break;
+    default:
+        fprintf(stderr, "Invalid ZoomMode_t, encountered: %d",
+            CurrentZoomMode);
+        CurrentZoomMode = ZM_FitAll;
+        break;
     }
 }
 

@@ -47,23 +47,23 @@ void Tree_RegisterStart(const char* start)
     
 }
 
-void Tree_CleanUp()
+void Tree_CleanUp(void)
 {
     UnloadDirectoryFiles(filesRoot);
 }
 
 
-const char* Tree_GetCurrent()
+const char* Tree_GetCurrent(void)
 {
     return filesRoot.paths[selectedFileRoot];
 }
 
-void Tree_Go_Next()
+void Tree_Go_Next(void)
 {
     selectedFileRoot = (selectedFileRoot + 1) % filesRoot.count;
 }
 
-void Tree_Go_Previous()
+void Tree_Go_Previous(void)
 {
     if (selectedFileRoot)
         --selectedFileRoot;

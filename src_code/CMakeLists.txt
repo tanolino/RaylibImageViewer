@@ -10,6 +10,8 @@ set(CURRENT_FILES
 	"Tree.c"
     "UserInterface.h"
     "UserInterface.c"
+	"Window.h"
+	"Window.c"
 )
 list(TRANSFORM CURRENT_FILES PREPEND "${CURRENT_DIR}/")
 source_group("${CURRENT_DIR}" FILES "${CURRENT_FILES}")

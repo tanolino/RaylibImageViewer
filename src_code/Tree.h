@@ -2,9 +2,9 @@
 #define TREE_HEADER
 
 void        Tree_RegisterStart(const char* start);
-void        Tree_CleanUp();
-const char* Tree_GetCurrent();
-void        Tree_Go_Next();
-void        Tree_Go_Previous();
+void        Tree_CleanUp(void);
+const char* Tree_GetCurrent(void);
+void        Tree_Go_Next(void);
+void        Tree_Go_Previous(void);
 
 #endif // TREE_HEADER
