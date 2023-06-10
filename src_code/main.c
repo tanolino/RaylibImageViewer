@@ -10,12 +10,11 @@
 #include "UserInterface.h"
 #include "Tree.h"
 #include "Window.h"
+#include "ImageLoader.h"
 
 void MainLoop();
 void HandleInput();
 bool IsAskingForHelp(const char* param);
-
-static Texture2D target = { 0 };
 static bool showHelp = false;
 static bool showTree = true;
 
@@ -24,6 +23,7 @@ int main(int argc, char** argv)
 {
     if (argc < 2)
     {
+        printf("\nStarting with working directory\n");
         Tree_RegisterStart(GetWorkingDirectory());
     }
     else if (IsAskingForHelp(argv[1]))
@@ -33,15 +33,13 @@ int main(int argc, char** argv)
     }
     else
     {
+        printf("Start with image: %s\n", argv[1]);
         Tree_RegisterStart(argv[1]);
     }
 
-    printf("\nStarting with parameter %s\n", argv[1]);
     Window_Init();
-    
-    target = LoadTexture(Tree_GetCurrent());
-    if (target.mipmaps > 1)
-        GenTextureMipmaps(&target);
+    ImageLoader_Init(Tree_GetCurrent());
+
 #if defined(PLATFORM_WEB)
     emscripten_set_main_loop(MainLoop, 60, 1);
 #else
@@ -50,7 +48,7 @@ int main(int argc, char** argv)
     }
 #endif
     // Cleanup
-    UnloadTexture(target);
+    ImageLoader_CleanUp();
     Window_Close();
     Tree_CleanUp();
 
@@ -59,11 +57,12 @@ int main(int argc, char** argv)
 
 void MainLoop() {
     HandleInput();
+    ImageLoader_UpdateAnimation(GetFrameTime());
     
     // Start Draw State
     BeginDrawing();
     ClearBackground(BLACK); 
-    TextureToScreen(&target);
+    TextureToScreen(ImageLoader_GetTexture());
     if (showHelp)
         showHelp &= UserInterface_ShowHelp();
     else if (showTree)
@@ -99,18 +98,12 @@ void HandleInput() {
         case KEY_LEFT:
             printf("Left\n");
             Tree_Go_Previous();
-            UnloadTexture(target);
-            target = LoadTexture(Tree_GetCurrent());
-            if (target.mipmaps > 1)
-                GenTextureMipmaps(&target);
+            ImageLoader_UpdateImage(Tree_GetCurrent());
             break;
         case KEY_RIGHT:
             printf("Right\n");
             Tree_Go_Next();
-            UnloadTexture(target);
-            target = LoadTexture(Tree_GetCurrent());
-            if (target.mipmaps > 1)
-                GenTextureMipmaps(&target);
+            ImageLoader_UpdateImage(Tree_GetCurrent());
             break;
         case KEY_UP:
             printf("Up\n");
@@ -135,4 +128,3 @@ bool IsAskingForHelp(const char* param)
         || strcmp(param, "--?") == 0
         || strcmp(param, "--help") == 0;
 }
-

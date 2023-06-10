@@ -5,6 +5,11 @@
 
 void TextureToScreen_FitAll(const Texture2D* source)
 {
+    if (!source)
+        return;
+    if (!source->width || !source->height)
+        return;
+
     const float sourceWidth = (float)source->width;
     const float sourceHeight = (float)source->height;
     const float screenWidth = (float)GetRenderWidth();
@@ -34,6 +39,11 @@ void TextureToScreen_FitAll(const Texture2D* source)
 
 void TextureToScreen_ZoomFill(const Texture2D* source)
 {
+    if (!source)
+        return;
+    if (!source->width || !source->height)
+        return;
+
     const float sourceWidth = (float)source->width;
     const float sourceHeight = (float)source->height;
     const float screenWidth = (float)GetRenderWidth();
@@ -70,6 +80,9 @@ void TextureToScreen_ZoomFill(const Texture2D* source)
 void TextureToScreen_ScrollContent(const Texture2D* source,
         double progress, double zoom)
 {
+    if (!source)
+        return;
+
     // TODO
 }
 

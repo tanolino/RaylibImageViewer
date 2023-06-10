@@ -18,9 +18,11 @@ project(
 
 set(SRC_FILES "") # Filled by add_subdirectory
 add_subdirectory("src_code")
-IF (WIN32)
+IF (MSVC)
 	source_group(TREE "${CMAKE_CURRENT_SOURCE_DIR}"
 			 FILES ${SRC_FILES})
+ELSE()
+    add_compile_options(-Wall -Wextra -Wpedantic -march=x86-64)
 ENDIF ()
 
 
@@ -36,7 +38,7 @@ else()
 	# We compile for a normal pc
 	message(STATUS " * C++ compiler: ${CMAKE_CXX_COMPILER_ID}")
 	# set(CMAKE_BUILD_TYPE "RelWithDebInfo")
-	set(CMAKE_BUILD_TYPE "Release")
+    # set(CMAKE_BUILD_TYPE "Release")
 	set(BUILD_SHARED_LIBS OFF)
 	set(OpenGL_GL_PREFERENCE "GLVND")
 
