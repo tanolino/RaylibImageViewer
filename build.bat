@@ -26,7 +26,7 @@ goto :eof
 echo Build for pc
 if not exist build_PC_Win mkdir build_PC_Win
 pushd build_PC_Win
-cmake -G Ninja ..
+cmake -G Ninja -DCMAKE_BUILD_TYPE=Release ..
 ..\Tools\win\ninja.exe
 popd
 exit /B

@@ -1,4 +1,4 @@
 [submodule "raylib"]
 	path = raylib
-	url = git@github.com:raysan5/raylib.git
+	url = https://github.com/raysan5/raylib.git
 	branch = fec96137e8d10ee6c88914fbe5e5429c13ee1dac

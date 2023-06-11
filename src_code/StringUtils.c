@@ -8,12 +8,7 @@ bool StringDuplicate(char** destination, const char* source, size_t limit_length
         return false;
 
     *destination = 0;
-    size_t str_size =
-#ifdef WIN32
-    strnlen_s(source, limit_length);
-#else
-    strlen(source);
-#endif
+    size_t str_size = strlen(source);
     if (str_size == 0 || str_size >= limit_length)
         return false;
 
