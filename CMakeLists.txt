@@ -16,11 +16,11 @@ project(
 	DESCRIPTION "A sample project using raylib."
 	)
 
-    add_compile_options(-Wall -Wextra -Wpedantic)
 #---------------- Configure Compiler Flags ---------------------
 if(CMAKE_CXX_COMPILER MATCHES "/em\\+\\+(-[a-zA-Z0-9.])?$")
 	# We compile with Emscripten
 	message(STATUS " * C++ compiler: Emscripten")
+    add_compile_options(-Wall -Wextra -Wpedantic)
 	set(CMAKE_BUILD_TYPE "RelWithDebInfo")
 	set(PLATFORM Web)
 	set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -s USE_GLFW=3 -s ASSERTIONS=1 -s WASM=1 -s ASYNCIFY -s ALLOW_MEMORY_GROWTH -s INITIAL_MEMORY=33554432")
@@ -38,10 +38,12 @@ else()
 	if (CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
 		# using Clang
 		set(CMAKE_EXE_LINKER_FLAGS ${CMAKE_EXE_LINKER_FLAGS} ${ADDITIONAL_LINK_LIBRARIES_STATIC})
+		add_compile_options(-Wall -Wextra -Wpedantic)
 		set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra")
 	elseif (CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
 		# using GCC
 		set(CMAKE_EXE_LINKER_FLAGS ${CMAKE_EXE_LINKER_FLAGS} ${ADDITIONAL_LINK_LIBRARIES_STATIC})
+		add_compile_options(-Wall -Wextra -Wpedantic)
 		set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra")
 	elseif (CMAKE_CXX_COMPILER_ID STREQUAL "Intel")
 		# using Intel C++
