@@ -19,35 +19,34 @@ static struct
 
 static void ImageLoader_Internal_Load(const char* imageFile)
 {
-    Image newImage = { 0 };
     if (!imageFile)
     {
-        loaderState.image = newImage;
+        loaderState.image = (Image){ 0 };
         return;
     }
     else if (IsFileExtension(imageFile, ".gif"))
     {
         unsigned int dataSize = 0;
         unsigned char* fileData = LoadFileData(imageFile, &dataSize);
-        if (fileData)
-        {
-            int comp = 0;
-            newImage.data = stbi_load_gif_from_memory(fileData, dataSize,
-                &loaderState.animation.Delays,
-                &newImage.width, &newImage.height,
-                &loaderState.animation.Count, &comp, 4);
-            newImage.mipmaps = 1;
-            newImage.format = PIXELFORMAT_UNCOMPRESSED_R8G8B8A8;
-
-            free(fileData);
-        }
+        if (!fileData)
+            loaderState.image = (Image){ 0 };
+        
+        int comp = 0;
+        Image newImage = { 0 };
+        newImage.data = stbi_load_gif_from_memory(fileData, dataSize,
+            &loaderState.animation.Delays,
+            &newImage.width, &newImage.height,
+            &loaderState.animation.Count, &comp, 4);
+        newImage.mipmaps = 1;
+        newImage.format = PIXELFORMAT_UNCOMPRESSED_R8G8B8A8;
+        loaderState.image = newImage;
+        free(fileData);
     }
     else
     {
-        newImage = LoadImage(imageFile);
+        loaderState.image = LoadImage(imageFile);
         loaderState.animation.Count = 0;
     } 
-    loaderState.image = newImage;
     
     loaderState.texture = LoadTextureFromImage(loaderState.image);
     if (loaderState.texture.mipmaps > 1)
