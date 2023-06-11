@@ -22,7 +22,7 @@ IF (MSVC)
 	source_group(TREE "${CMAKE_CURRENT_SOURCE_DIR}"
 			 FILES ${SRC_FILES})
 ELSE()
-    add_compile_options(-Wall -Wextra -Wpedantic -march=x86-64)
+    add_compile_options(-Wall -Wextra -Wpedantic)
 ENDIF ()
 
 
