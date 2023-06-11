@@ -13,7 +13,7 @@
 #pragma warning(disable: 4244) // lossy implicit type conversion
 #endif
 
-#include "../raygui/raygui.h"
+#include "../raygui/src/raygui.h"
 
 #if defined(__clang__)
 // TODO

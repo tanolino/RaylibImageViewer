@@ -2,3 +2,9 @@
 	path = raylib
 	url = https://github.com/raysan5/raylib.git
 	branch = fec96137e8d10ee6c88914fbe5e5429c13ee1dac
+	shallow = true
+[submodule "raygui"]
+    path = raygui
+    url = https://github.com/raysan5/raygui.git
+	branch = b9991686d5f9f78ab599e7aaaa6b657627905d6e
+	shallow = true
