@@ -16,16 +16,7 @@ project(
 	DESCRIPTION "A sample project using raylib."
 	)
 
-set(SRC_FILES "") # Filled by add_subdirectory
-add_subdirectory("src_code")
-IF (MSVC)
-	source_group(TREE "${CMAKE_CURRENT_SOURCE_DIR}"
-			 FILES ${SRC_FILES})
-ELSE()
     add_compile_options(-Wall -Wextra -Wpedantic)
-ENDIF ()
-
-
 #---------------- Configure Compiler Flags ---------------------
 if(CMAKE_CXX_COMPILER MATCHES "/em\\+\\+(-[a-zA-Z0-9.])?$")
 	# We compile with Emscripten
@@ -107,17 +98,7 @@ set(SUPPORT_SCREEN_CAPTURE OFF)
 set(USE_AUDIO ON)
 
 add_subdirectory("raylib")
-#---------------------------------------------
 
 
-include_directories("${CMAKE_SOURCE_DIR}/code" ${raylib_public_headers})
-message(DEBUG "Source Files: " ${SRC_FILES})
-add_executable(${PROJECT_NAME} ${SRC_FILES})
-target_link_libraries(${PROJECT_NAME} PRIVATE raylib)
-set_property(GLOBAL PROPERTY USE_FOLDERS ON)
-
-if (APPLE)
-    target_link_libraries(${PROJECT_NAME} "-framework IOKit")
-    target_link_libraries(${PROJECT_NAME} "-framework Cocoa")
-    target_link_libraries(${PROJECT_NAME} "-framework OpenGL")
-endif()
+#--------------------- Configure Viewer -------------------
+add_subdirectory("code")
